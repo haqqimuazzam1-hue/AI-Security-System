@@ -17,7 +17,7 @@ class QuantumShield_AICore:
         # Multi-dimensional threat database
         self.threat_layers = {
             "CRITICAL": {
-                "keywords": ["ddos", "flood", "syn flood", "udp flood", "http flood", "botnet", "amplification"],
+                "keywords": ["ddos", "flood", "syn flood", "udp flood", "http flood", "botnet", "amplification", "jailbreak"],
                 "weight": 100,
                 "cooldown": 3600
             },
@@ -146,23 +146,13 @@ class QuantumShield_AICore:
         # Aggressiveness detection
         aggressive_patterns = [
             r"(\b(must|harus|wajib|sekarang|cepat|lakukan)\b.*){3,}",
-            r"\b(aku|saya)\s+(pemilik|bos|tuan)\b",
+            r"\s+(pemilik|bos|tuan)\b",
             r"(!|\?|\.){3,}",  # Multiple punctuation
         ]
         
         for pattern in aggressive_patterns:
             if re.search(pattern, prompt, re.IGNORECASE):
                 behavioral_metrics["aggressiveness"] += 25
-        
-        # Manipulation detection
-        manipulation_indicators = [
-            "tolong", "bisa", "membantu", "hanya", "cuma", "tanya",
-            "sekedar", "penasaran", "riset", "belajar", "pendidikan"
-        ]
-        
-        manip_count = sum(1 for word in manipulation_indicators if word in prompt.lower())
-        if manip_count > 2:
-            behavioral_metrics["manipulation_score"] = min(100, manip_count * 15)
         
         # Evasion detection
         evasion_techniques = [
