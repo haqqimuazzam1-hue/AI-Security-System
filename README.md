@@ -1,6 +1,6 @@
-Quantum Shield v11.0: Advanced AI Security Layer
+Sentinel v14.0: Advanced AI Security Layer
 
-Quantum Shield is a Python-based security framework designed to mitigate prompt injections and jailbreaks in LLMs.
+Sentinel is a Python-based security framework designed to mitigate prompt injections and jailbreaks in LLMs.
 
 Key Features:
 
